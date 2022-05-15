@@ -1,4 +1,4 @@
-**/*.js
+**/*.test.jsx
 !.jest
 node_modules
 build
