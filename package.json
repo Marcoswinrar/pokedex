@@ -18,7 +18,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --watchAll=false",
-    "coverage": "yarn test --coverage --watchAll",
+    "coverage": "yarn test --coverage --watchAll=false",
     "eject": "react-scripts eject",
     "lint": "eslint ./src/**/*.jsx",
     "lint:fix": "yarn lint --fix",
@@ -43,7 +43,15 @@
       "!build/**",
       "!src/reportWebVitals.js",
       "!src/index.jsx"
-    ]
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 80,
+        "functions": 80,
+        "lines": 80,
+        "statements": 80
+      }
+    }
   },
   "browserslist": {
     "production": [
