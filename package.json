@@ -6,22 +6,37 @@
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.2.0",
     "@testing-library/user-event": "^13.5.0",
+    "axios": "^0.27.2",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
+    "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
+    "styled-components": "^5.3.5",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "coverage": "yarn test --coverage --watchAll",
     "eject": "react-scripts eject",
+    "lint": "eslint ./src/**/*.jsx",
+    "lint:fix": "yarn lint --fix",
     "prepare": "husky install"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
       "react-app/jest"
+    ]
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.jsx",
+      "!**/node_modules/**",
+      "!build/**",
+      "!src/reportWebVitals.js",
+      "!src/index.jsx"
     ]
   },
   "browserslist": {
@@ -44,7 +59,7 @@
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
-    "prettier": "^2.6.2",
-    "husky": "^8.0.1"
+    "husky": "^8.0.1",
+    "prettier": "^2.6.2"
   }
 }
