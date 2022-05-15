@@ -1,10 +1,17 @@
 import logo from './logo.svg'
 
 function App() {
+  const onClick = () => {
+    document.title = 'Teste'
+  }
+
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
+        <button type="button" onClick={() => onClick}>
+          Teste
+        </button>
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
