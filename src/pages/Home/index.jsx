@@ -1,11 +1,11 @@
 import Layout from '../../components/Layout'
+import PokemonList from '../../components/PokemonList'
 import * as S from './styled'
 
 const Home = () => (
   <Layout>
     <S.Home>
-      <S.Title alt="Listagem de pokemons">Home</S.Title>
-      <p>Home component</p>
+      <PokemonList />
     </S.Home>
   </Layout>
 )
