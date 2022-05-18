@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import Colours from '../../styles/pokemonTypes'
+import typeColours from '../../styles/pokemonTypes'
 
 export const Pokemon = styled.div`
   display: flex;
@@ -8,7 +8,7 @@ export const Pokemon = styled.div`
   align-items: center;
   padding: 12px;
   border-radius: 10px;
-  background-color: ${(props) => Colours[props.color]};
+  background-color: ${(props) => typeColours[props.color]};
   transition: transform 0.2s linear;
   cursor: pointer;
 
