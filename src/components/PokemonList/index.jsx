@@ -1,7 +1,9 @@
 import { useState, useEffect, useCallback } from 'react'
 import axios from 'axios'
+import Fetch from '../../config/Fetch'
 import Pokemon from '../Pokemon'
 import Pagination from '../Pagination'
+import sortPokemons from '../../utils/sort'
 import * as S from './styled'
 
 const PokemonList = () => {
@@ -15,16 +17,14 @@ const PokemonList = () => {
     async (url) => {
       const {
         data: { results, next, previous }
-      } = await axios.get(
-        url || 'https://pokeapi.co/api/v2/pokemon?limit=12&offset=0'
-      )
+      } = await Fetch.get(url || 'pokemon?limit=12&offset=0')
 
       const map = []
 
       axios
         .all(
           results.map((pokemon) =>
-            axios.get(pokemon.url).then(({ data }) => map.push(data))
+            Fetch.get(pokemon.url).then(({ data }) => map.push(data))
           )
         )
         .finally(() => {
@@ -33,7 +33,7 @@ const PokemonList = () => {
             next,
             previous
           }))
-          setPokemons(map.sort((a, b) => a.id - b.id))
+          setPokemons(sortPokemons(map))
         })
     },
     [setPokemons, setPagination]
