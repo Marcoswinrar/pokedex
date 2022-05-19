@@ -1,10 +1,10 @@
-import { css } from 'styled-components'
+import styled from 'styled-components'
 
-const PageContainerStyle = css`
+const PageContainerStyle = styled.section`
   width: 90%;
-  margin: 2rem auto;
+  margin: 1.5rem auto;
 `
-const PageTitleStyle = css`
+const PageTitleStyle = styled.h1`
   color: crimson;
   font-weight: lighter;
   background-color: white;
