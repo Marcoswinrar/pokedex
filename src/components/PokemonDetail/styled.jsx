@@ -1,10 +1,14 @@
 import styled from 'styled-components'
 import media from 'styled-media-query'
+import { MdKeyboardBackspace } from 'react-icons/md'
+import Colors from '../../styles/colors'
+import bounceIn from './animation'
 
 export const PokemonDetail = styled.div`
   width: 50%;
   margin: 2rem auto;
   background-color: white;
+  border-radius: 13px;
 
   ${media.lessThan('1920px')`
     width: 75%;
@@ -17,6 +21,12 @@ export const PokemonDetail = styled.div`
   ${media.lessThan('small')`
     width: 100%;
   `}
+
+  .pokemon__header {
+    background-color: ${Colors.redDefault};
+    border-bottom: 1px solid #2d3436;
+    cursor: pointer;
+  }
 
   .pokemon__title {
     display: flex;
@@ -77,13 +87,24 @@ export const SpriteContainer = styled.div``
 export const Sprite = styled.img`
   display: block;
   margin: 0 auto;
+  animation: ${bounceIn} 1s ease 0s 1 normal forwards;
 
   ${media.lessThan('large')`
     width:100%;
     height: auto;
   `}
+
+  ${media.lessThan('medium')`
+    animation: none;
+  `}
 `
 
 export const Stats = styled.div`
   text-transform: uppercase;
+`
+
+export const ArrowBack = styled(MdKeyboardBackspace)`
+  color: white;
+  padding: 8px;
+  font-size: 2.5rem;
 `
