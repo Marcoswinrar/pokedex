@@ -4,7 +4,7 @@ import Message from '../Message'
 import PokemonStats from '../PokemonStats'
 import PokemonTypes from '../PokemonTypes'
 import PokemonAbilities from '../PokemonAbilities'
-import Fetch from '../../config/Fetch'
+import Fetch from '../../config/fetch'
 import * as S from './styled'
 
 const PokemonDetail = () => {

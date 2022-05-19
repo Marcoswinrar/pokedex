@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
 import axios from 'axios'
-import Fetch from '../../config/Fetch'
+import Fetch from '../../config/fetch'
 import Pokemon from '../Pokemon'
 import Pagination from '../Pagination'
 import Message from '../Message'
