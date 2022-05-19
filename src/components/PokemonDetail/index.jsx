@@ -4,8 +4,8 @@ import Message from '../Message'
 import PokemonStats from '../PokemonStats'
 import PokemonTypes from '../PokemonTypes'
 import PokemonAbilities from '../PokemonAbilities'
-import Fetch from '../../config/fetch'
 import * as S from './styled'
+import fetch from '../../config/fetch'
 
 const PokemonDetail = () => {
   const params = useParams()
@@ -16,7 +16,7 @@ const PokemonDetail = () => {
 
   const getPokemon = useCallback(async () => {
     try {
-      const { data } = await Fetch.get(`pokemon/${params.name}`)
+      const { data } = await fetch.get(`pokemon/${params.name}`)
       setPokemon(data)
     } catch (error) {
       setErrorMessage(error.response?.data || 'Erro ao buscar dados!')
