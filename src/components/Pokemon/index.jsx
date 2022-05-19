@@ -12,7 +12,7 @@ const Pokemon = ({ pokemon }) => {
       onClick={() => navigate(`/${pokemon.name}`)}
     >
       <S.Sprite
-        alt="Foto do pokemon"
+        alt={`Sprite do ${pokemon.name}`}
         src={pokemon.sprites.other['official-artwork'].front_default}
       />
       <S.Content>

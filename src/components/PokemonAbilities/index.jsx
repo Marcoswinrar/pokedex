@@ -10,7 +10,7 @@ const PokemonAbilities = ({ abilities }) => (
 )
 
 PokemonAbilities.propTypes = {
-  abilities: PropTypes.object.isRequired
+  abilities: PropTypes.array.isRequired
 }
 
 export default PokemonAbilities

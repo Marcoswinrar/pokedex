@@ -1,35 +1,45 @@
 import { useCallback, useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import Fetch from '../../config/Fetch'
+import { useNavigate, useParams } from 'react-router-dom'
+import Message from '../Message'
 import PokemonStats from '../PokemonStats'
 import PokemonTypes from '../PokemonTypes'
 import PokemonAbilities from '../PokemonAbilities'
+import Fetch from '../../config/Fetch'
 import * as S from './styled'
 
 const PokemonDetail = () => {
   const params = useParams()
+  const navigate = useNavigate()
+
   const [pokemon, setPokemon] = useState()
+  const [errorMessage, setErrorMessage] = useState(undefined)
 
   const getPokemon = useCallback(async () => {
     try {
       const { data } = await Fetch.get(`pokemon/${params.name}`)
-      console.log(data)
       setPokemon(data)
     } catch (error) {
-      console.log(error)
+      setErrorMessage(error.response?.data || 'Erro ao buscar dados!')
     }
-  }, [setPokemon])
+  }, [setPokemon, setErrorMessage])
 
   useEffect(() => {
     getPokemon()
   }, [getPokemon])
 
+  if (errorMessage) {
+    return <Message message={errorMessage} />
+  }
+
   if (!pokemon) {
-    return <div>Carregando...</div>
+    return <Message message="Carregando..." />
   }
 
   return (
     <S.PokemonDetail>
+      <S.Section className="pokemon__header">
+        <S.ArrowBack title="Voltar" onClick={() => navigate('/')} />
+      </S.Section>
       <S.Section className="pokemon__title">
         <S.Title>{pokemon.name}</S.Title>
         <S.PokedexNumber>{pokemon.id}</S.PokedexNumber>
@@ -38,7 +48,7 @@ const PokemonDetail = () => {
         <S.Column>
           <S.SpriteContainer>
             <S.Sprite
-              alt={pokemon.name}
+              alt={`Sprite do ${pokemon.name}`}
               src={pokemon.sprites.other['official-artwork'].front_default}
             />
           </S.SpriteContainer>

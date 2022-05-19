@@ -1,12 +1,12 @@
 import Layout from '../../components/Layout'
 import PokemonList from '../../components/PokemonList'
-import * as S from './styled'
+import { PageContainerStyle } from '../../styles/pages'
 
 const Home = () => (
   <Layout>
-    <S.Home>
+    <PageContainerStyle>
       <PokemonList />
-    </S.Home>
+    </PageContainerStyle>
   </Layout>
 )
 
