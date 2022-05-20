@@ -4,11 +4,14 @@ import Pokemon from '../Pokemon'
 import Pagination from '../Pagination'
 import Message from '../Message'
 import Grid from './styled'
-import sortPokemons from '../../utils/sort'
+import Loading from '../Loading'
+import ScrollToTopButton from '../ScrollToTopButton'
 import fetch from '../../config/fetch'
+import sortPokemons from '../../utils/sort'
 
 const PokemonList = () => {
   const [pokemons, setPokemons] = useState([])
+  const [loading, setLoading] = useState(false)
   const [errorMessage, setErrorMessage] = useState(undefined)
   const [pagination, setPagination] = useState({
     next: '',
@@ -17,6 +20,7 @@ const PokemonList = () => {
 
   const getPokemons = useCallback(
     async (url) => {
+      setLoading(true)
       try {
         const {
           data: { results, next, previous }
@@ -29,11 +33,15 @@ const PokemonList = () => {
             results.map((pokemon) =>
               fetch
                 .get(pokemon.url)
-                .then(({ data }) => map.push(data))
+                .then(({ data }) => {
+                  map.push(data)
+                  setLoading(false)
+                })
                 .catch((error) => {
                   setErrorMessage(
                     error.response?.data || 'Error ao buscar dados!'
                   )
+                  setLoading(false)
                 })
             )
           )
@@ -60,6 +68,10 @@ const PokemonList = () => {
     return <Message message={errorMessage} />
   }
 
+  if (loading) {
+    return <Loading />
+  }
+
   return (
     <>
       <Grid>
@@ -67,7 +79,8 @@ const PokemonList = () => {
           <Pokemon key={pokemon.id} pokemon={pokemon} />
         ))}
       </Grid>
-      <Pagination pagination={pagination} onClick={(url) => getPokemons(url)} />
+      <Pagination pagination={pagination} onPaginate={getPokemons} />
+      <ScrollToTopButton />
     </>
   )
 }

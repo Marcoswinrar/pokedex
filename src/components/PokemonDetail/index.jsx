@@ -4,8 +4,9 @@ import Message from '../Message'
 import PokemonStats from '../PokemonStats'
 import PokemonTypes from '../PokemonTypes'
 import PokemonAbilities from '../PokemonAbilities'
-import * as S from './styled'
+import Loading from '../Loading'
 import fetch from '../../config/fetch'
+import * as S from './styled'
 
 const PokemonDetail = () => {
   const params = useParams()
@@ -32,7 +33,7 @@ const PokemonDetail = () => {
   }
 
   if (!pokemon) {
-    return <Message message="Carregando..." />
+    return <Loading />
   }
 
   return (
@@ -54,11 +55,11 @@ const PokemonDetail = () => {
           </S.SpriteContainer>
         </S.Column>
         <S.Column>
-          <h1>Tipo</h1>
+          <h2>Tipo</h2>
           <PokemonTypes types={pokemon.types} />
-          <h1>Habilidades</h1>
+          <h2>Habilidades</h2>
           <PokemonAbilities abilities={pokemon.abilities} />
-          <h1>Stats</h1>
+          <h2>Stats</h2>
           <PokemonStats stats={pokemon.stats} />
         </S.Column>
       </S.Section>
