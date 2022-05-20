@@ -24,13 +24,13 @@ describe('Componente <Pokemon />', () => {
     expect(screen.queryByText(/Electric/i)).toBeInTheDocument()
   })
 
-  // describe('Ações do Usuário', () => {
-  //   it('Deve navegar para a página de detalhe caso clique no Pokemon', () => {
-  //     const card = screen.queryByText(/Pikachu/i)
+  describe('Ações do Usuário', () => {
+    it('Deve navegar para a página de detalhe caso clique no Pokemon', () => {
+      const card = screen.queryByText(/Pikachu/i)
 
-  //     fireEvent.click(card)
+      fireEvent.click(card)
 
-  //     expect(window.location.pathname).toBe('/Pikachu')
-  //   })
-  // })
+      expect(window.location.pathname).toBe('/Pikachu')
+    })
+  })
 })
