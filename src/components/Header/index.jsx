@@ -1,10 +1,15 @@
+import { useNavigate } from 'react-router-dom'
 import * as S from './styled'
 import Logo from '../../assets/images/pokedex.png'
 
-const Header = () => (
-  <S.Header>
-    <S.Logo alt="Pokedex" src={Logo} />
-  </S.Header>
-)
+const Header = () => {
+  const navigate = useNavigate()
+
+  return (
+    <S.Header>
+      <S.Logo onClick={() => navigate('/')} alt="Pokedex" src={Logo} />
+    </S.Header>
+  )
+}
 
 export default Header
