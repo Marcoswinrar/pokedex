@@ -6,6 +6,6 @@ describe('App', () => {
   it('Deve renderizar a App sem problemas', () => {
     render(<App />, { wrapper: BrowserRouter })
 
-    expect(screen.queryByText(/Pokedex/i)).toBeInTheDocument()
+    expect(screen.queryByAltText(/Pokedex/i)).toBeInTheDocument()
   })
 })
