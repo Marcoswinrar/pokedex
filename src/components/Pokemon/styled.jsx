@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import media from 'styled-media-query'
 import typeColours from '../../styles/pokemonTypes'
 
 export const Pokemon = styled.div`
@@ -15,6 +16,12 @@ export const Pokemon = styled.div`
   :hover {
     transform: scale(1.1);
   }
+
+  ${media.lessThan('medium')`
+    :hover {
+      transform: none;
+    }
+  `}
 `
 
 export const Sprite = styled.img`
