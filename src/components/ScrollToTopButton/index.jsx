@@ -24,7 +24,7 @@ const ScrollToTopButton = () => {
   return (
     showButton && (
       <S.Container>
-        <S.Button onClick={goToTop} />
+        <S.Button title="Ir para o topo" onClick={goToTop} />
       </S.Container>
     )
   )

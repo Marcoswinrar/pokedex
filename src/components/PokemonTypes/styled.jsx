@@ -8,7 +8,6 @@ export const Types = styled.div`
 `
 
 export const Type = styled.span`
-  ${(props) => props.width && 'width: 42px'};
   background-color: ${(props) => Colours[props.color]};
   color: white;
   margin: 3px;

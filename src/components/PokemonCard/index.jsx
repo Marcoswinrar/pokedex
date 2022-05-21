@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import PokemonTypes from '../PokemonTypes'
 import * as S from './styled'
 
-const Pokemon = ({ pokemon }) => {
+const PokemonCard = ({ pokemon }) => {
   const navigate = useNavigate()
 
   return (
@@ -25,7 +25,7 @@ const Pokemon = ({ pokemon }) => {
   )
 }
 
-Pokemon.propTypes = {
+PokemonCard.propTypes = {
   pokemon: PropTypes.shape({
     types: PropTypes.arrayOf(
       PropTypes.oneOfType([PropTypes.object, PropTypes.string])
@@ -36,4 +36,4 @@ Pokemon.propTypes = {
   }).isRequired
 }
 
-export default Pokemon
+export default PokemonCard

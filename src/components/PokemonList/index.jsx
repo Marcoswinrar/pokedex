@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
 import axios from 'axios'
-import Pokemon from '../Pokemon'
+import PokemonCard from '../PokemonCard'
 import Pagination from '../Pagination'
 import Message from '../Message'
 import Grid from './styled'
@@ -27,7 +27,6 @@ const PokemonList = () => {
         } = await fetch.get(url || 'pokemon?limit=12&offset=0')
 
         const map = []
-
         axios
           .all(
             results.map((pokemon) =>
@@ -35,27 +34,27 @@ const PokemonList = () => {
                 .get(pokemon.url)
                 .then(({ data }) => {
                   map.push(data)
-                  setLoading(false)
                 })
                 .catch((error) => {
                   setErrorMessage(
-                    error.response?.data || 'Error ao buscar dados!'
+                    error.response?.data || 'Erro ao buscar dados!'
                   )
                   setLoading(false)
                 })
             )
           )
           .finally(() => {
-            setPagination((prev) => ({
-              ...prev,
+            setPagination({
               next,
               previous
-            }))
+            })
             setPokemons(sortPokemons(map))
           })
       } catch (error) {
-        setErrorMessage(error.response?.data || 'Error ao buscar dados!')
+        setErrorMessage(error.response?.data || 'Erro ao buscar dados!')
+        setLoading(false)
       }
+      setLoading(false)
     },
     [setPokemons, setPagination]
   )
@@ -76,7 +75,7 @@ const PokemonList = () => {
     <>
       <Grid>
         {pokemons.map((pokemon) => (
-          <Pokemon key={pokemon.id} pokemon={pokemon} />
+          <PokemonCard key={pokemon.id} pokemon={pokemon} />
         ))}
       </Grid>
       <Pagination pagination={pagination} onPaginate={getPokemons} />
