@@ -5,11 +5,12 @@
 ## [Pokedex](https://pokedex.geekercode.com.br) desenvolvida em React
 
 * PropTypes
-* CSS-in-JS
-* Grid CSS
 * Styled Components
 * Styled Media Query  
-* Jest(testes de unidade)
+* Jest
+* React Testing Library
+* Eslint
+* Prettier
 * Husky (Git hooks)
 
 ### Listagem
