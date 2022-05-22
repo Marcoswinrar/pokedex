@@ -9,7 +9,7 @@ describe('Componente <Pagination />', () => {
   }
 
   const renderComponent = (pagination) =>
-    render(<Pagination onPaginate={onPaginate} pagination={pagination} />)
+    render(<Pagination handlePaginate={onPaginate} pagination={pagination} />)
 
   beforeEach(() => renderComponent(pagination))
 

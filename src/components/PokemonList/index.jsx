@@ -4,14 +4,12 @@ import PokemonCard from '../PokemonCard'
 import Pagination from '../Pagination'
 import Message from '../Message'
 import Grid from './styled'
-import Loading from '../Loading'
 import ScrollToTopButton from '../ScrollToTopButton'
 import fetch from '../../config/fetch'
 import sortPokemons from '../../utils/sort'
 
 const PokemonList = () => {
   const [pokemons, setPokemons] = useState([])
-  const [loading, setLoading] = useState(false)
   const [errorMessage, setErrorMessage] = useState(undefined)
   const [pagination, setPagination] = useState({
     next: '',
@@ -19,44 +17,33 @@ const PokemonList = () => {
   })
 
   const getPokemons = useCallback(
-    async (url) => {
-      setLoading(true)
+    async (url = 'pokemon?limit=12&offset=0') => {
       try {
         const {
           data: { results, next, previous }
-        } = await fetch.get(url || 'pokemon?limit=12&offset=0')
+        } = await fetch.get(url)
 
         const map = []
-        axios
-          .all(
-            results.map((pokemon) =>
-              fetch
-                .get(pokemon.url)
-                .then(({ data }) => {
-                  map.push(data)
-                })
-                .catch((error) => {
-                  setErrorMessage(
-                    error.response?.data || 'Erro ao buscar dados!'
-                  )
-                  setLoading(false)
-                })
-            )
+        await axios.all(
+          results.map((pokemon) =>
+            fetch
+              .get(pokemon.url)
+              .then(({ data }) => {
+                map.push(data)
+              })
+              .catch((error) => {
+                setErrorMessage(error.response?.data || 'Erro ao buscar dados!')
+              })
           )
-          .finally(() => {
-            setPagination({
-              next,
-              previous
-            })
-            setPokemons(sortPokemons(map))
-          })
+        )
+
+        setPokemons(sortPokemons(map))
+        setPagination({ next, previous })
       } catch (error) {
         setErrorMessage(error.response?.data || 'Erro ao buscar dados!')
-        setLoading(false)
       }
-      setLoading(false)
     },
-    [setPokemons, setPagination]
+    [setPokemons, setPagination, setErrorMessage]
   )
 
   useEffect(() => {
@@ -67,10 +54,6 @@ const PokemonList = () => {
     return <Message message={errorMessage} />
   }
 
-  if (loading) {
-    return <Loading />
-  }
-
   return (
     <>
       <Grid>
@@ -78,7 +61,7 @@ const PokemonList = () => {
           <PokemonCard key={pokemon.id} pokemon={pokemon} />
         ))}
       </Grid>
-      <Pagination pagination={pagination} onPaginate={getPokemons} />
+      <Pagination pagination={pagination} handlePaginate={getPokemons} />
       <ScrollToTopButton />
     </>
   )

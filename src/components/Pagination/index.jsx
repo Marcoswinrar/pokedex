@@ -1,17 +1,17 @@
 import PropTypes from 'prop-types'
 import * as S from './styled'
 
-const Pagination = ({ pagination, onPaginate }) => (
+const Pagination = ({ pagination, handlePaginate }) => (
   <S.Paginator>
     <S.Button
       disabled={!pagination.previous}
-      onClick={() => onPaginate(pagination.previous)}
+      onClick={() => handlePaginate(pagination.previous)}
     >
       Anterior
     </S.Button>
     <S.Button
       disabled={!pagination.next}
-      onClick={() => onPaginate(pagination.next)}
+      onClick={() => handlePaginate(pagination.next)}
     >
       Próxima
     </S.Button>
@@ -20,7 +20,7 @@ const Pagination = ({ pagination, onPaginate }) => (
 
 Pagination.propTypes = {
   pagination: PropTypes.objectOf(PropTypes.string).isRequired,
-  onPaginate: PropTypes.func.isRequired
+  handlePaginate: PropTypes.func.isRequired
 }
 
 export default Pagination

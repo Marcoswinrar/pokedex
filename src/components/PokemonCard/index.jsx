@@ -5,7 +5,6 @@ import * as S from './styled'
 
 const PokemonCard = ({ pokemon }) => {
   const navigate = useNavigate()
-
   return (
     <S.Pokemon
       color={pokemon.types[0].type.name}
