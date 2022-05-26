@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Componente <Loading/> Deve renderizar o componente sem problemas 1`] = `
+<div>
+  <div
+    class="sc-bczRLJ eAA-DkR"
+  >
+    <div
+      class="sc-gsnTZi jXfiJV"
+    />
+  </div>
+</div>
+`;
