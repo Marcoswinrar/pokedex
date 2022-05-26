@@ -1,7 +1,7 @@
 import { cleanup, render, screen } from '@testing-library/react'
 import PokemonTypes from '.'
+import { types } from '../../__mocks__/pokemon'
 import typeColours from '../../styles/pokemonTypes'
-import { types } from '../../utils/mock'
 
 describe('Component <PokemonTypes />', () => {
   beforeEach(() => {
