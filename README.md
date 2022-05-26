@@ -4,7 +4,7 @@
 
 ## [Pokedex](https://pokedex.geekercode.com.br) desenvolvida em React
 
-* PropTypes
+* TypeScript
 * Styled Components
 * Styled Media Query  
 * Jest
